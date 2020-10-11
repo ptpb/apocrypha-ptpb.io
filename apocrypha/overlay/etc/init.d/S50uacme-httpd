@@ -1,0 +1,19 @@
+#!/bin/sh
+
+DAEMON="httpd"
+PIDFILE="/run/$DAEMON.pid"
+
+start() {
+    printf 'Starting %s: ' "$DAEMON"
+
+    start-stop-daemon -b -m -S -q -p "$PIDFILE" -x "/usr/sbin/$DAEMON" -- -f -h /mnt/httpd/
+    status=$?
+    if [ "$status" -eq 0 ]; then
+	echo "OK"
+    else
+	echo "FAIL"
+    fi
+    return "$status"
+}
+
+start

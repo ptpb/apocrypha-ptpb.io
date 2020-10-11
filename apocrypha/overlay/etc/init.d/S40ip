@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -ex
+
+ip link set dev eth0 up
+udhcpc eth0

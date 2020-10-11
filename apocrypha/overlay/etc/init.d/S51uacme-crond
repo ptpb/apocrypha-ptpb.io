@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -ex
+
+UACMED=/mnt/uacme
+
+issue_right_now() {
+    if [ ! -d "$UACMED/private" ]; then
+        uacme -v -c $UACMED -y new
+    fi
+
+    export UACME_CHALLENGE_PATH=/mnt/httpd/.well-known/acme-challenge
+    uacme -v -c $UACMED -h /usr/share/uacme/uacme.sh issue ptpb.io
+}
+
+pre_start() {
+    mkdir -p /run/crond
+    cat <<EOF > /run/crond/root
+40 4 * * * /usr/bin/uacme -v -c $UACMED -h /usr/share/uacme/uacme.sh issue ptpb.io
+EOF
+}
+
+start() {
+    /usr/sbin/crond -f -L /dev/console -c /run/crond
+}
+
+issue_right_now
+pre_start
+start

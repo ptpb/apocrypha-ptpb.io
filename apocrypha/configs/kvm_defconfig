@@ -1,0 +1,53 @@
+# architecture
+BR2_x86_64=y
+BR2_x86_core2=y
+
+# toolchain
+BR2_TOOLCHAIN_EXTERNAL=y
+BR2_TOOLCHAIN_EXTERNAL_DOWNLOAD=y
+BR2_TOOLCHAIN_EXTERNAL_URL="file:///home/a/buildroot-toolchain/build/images/x86_64-buildroot-linux-musl_sdk-buildroot.tar.gz"
+BR2_TOOLCHAIN_EXTERNAL_HEADERS_5_7=y
+BR2_TOOLCHAIN_EXTERNAL_CUSTOM_MUSL=y
+BR2_TOOLCHAIN_EXTERNAL_GCC_9=y
+
+# getty
+# BR2_TARGET_GENERIC_GETTY is not set
+# BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW is not set
+
+# overlay
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_APOCRYPHA_PATH)/overlay/"
+
+# busybox
+BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_APOCRYPHA_PATH)/board/kvm/busybox.fragment"
+
+# kernel
+BR2_LINUX_KERNEL=y
+BR2_LINUX_KERNEL_CUSTOM_VERSION=y
+# 4.19 is due to https://lists.archive.carbon60.com/linux/kernel/3728245 which
+# does not appear to be fixed in the 5.8-rc yet
+BR2_LINUX_KERNEL_CUSTOM_VERSION_VALUE="4.19.150"
+BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
+BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(BR2_EXTERNAL_APOCRYPHA_PATH)/board/kvm/linux.config"
+BR2_LINUX_KERNEL_INSTALL_TARGET=y
+
+# bootloader
+BR2_TARGET_GRUB2=y
+BR2_TARGET_GRUB2_BUILTIN_MODULES="boot linux squash4 part_msdos serial normal biosdisk"
+
+# rootfs
+BR2_TARGET_ROOTFS_SQUASHFS=y
+BR2_TARGET_ROOTFS_SQUASHFS4_LZO=y
+# BR2_TARGET_ROOTFS_TAR is not set
+
+# disk image
+BR2_PACKAGE_HOST_GENIMAGE=y
+BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_APOCRYPHA_PATH)/board/kvm/post-build.sh"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="support/scripts/genimage.sh"
+BR2_ROOTFS_POST_SCRIPT_ARGS="-c $(BR2_EXTERNAL_APOCRYPHA_PATH)/board/kvm/genimage.cfg"
+
+# HACK: libcurl will use libressl implicitly
+BR2_PACKAGE_LIBCURL_TLS_NONE=y
+
+BR2_PACKAGE_APOCRYPHA=y
+BR2_PACKAGE_UACME=y
+BR2_PACKAGE_CA_CERTIFICATES=y

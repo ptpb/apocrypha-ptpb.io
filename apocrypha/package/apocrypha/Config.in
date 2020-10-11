@@ -1,0 +1,4 @@
+config BR2_PACKAGE_APOCRYPHA
+       bool "apocrypha"
+       help
+         install apocrypha

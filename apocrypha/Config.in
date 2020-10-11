@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_APOCRYPHA_PATH/package/apocrypha/Config.in"
