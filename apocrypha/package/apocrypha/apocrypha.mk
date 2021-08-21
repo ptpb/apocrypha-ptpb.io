@@ -3,7 +3,7 @@
 # apocrypha
 #
 ################################################################################
-APOCRYPHA_VERSION = 4e7dada
+APOCRYPHA_VERSION = 3d744db
 APOCRYPHA_SITE = https://github.com/ptpb/apocrypha.git
 APOCRYPHA_SITE_METHOD = git
 APOCRYPHA_LICENSE = GPL-3.0+
