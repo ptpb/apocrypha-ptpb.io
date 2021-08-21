@@ -24,5 +24,6 @@ qemu-system-x86_64 \
     -net nic,model=virtio \
     -net user \
     -device virtio-serial-pci \
-    -serial mon:stdio \
-    -device virtio-rng-pci
+    -serial stdio \
+    -device virtio-rng-pci \
+    -monitor udp::45555

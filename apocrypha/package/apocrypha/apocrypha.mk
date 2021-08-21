@@ -3,11 +3,11 @@
 # apocrypha
 #
 ################################################################################
-APOCRYPHA_VERSION = da0e880
+APOCRYPHA_VERSION = 4e7dada
 APOCRYPHA_SITE = https://github.com/ptpb/apocrypha.git
 APOCRYPHA_SITE_METHOD = git
 APOCRYPHA_LICENSE = GPL-3.0+
-APOCRYPHA_DEPENDENCIES = libressl
+APOCRYPHA_DEPENDENCIES = gnutls
 
 define APOCRYPHA_BUILD_CMDS
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) all

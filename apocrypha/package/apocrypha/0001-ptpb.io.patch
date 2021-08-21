@@ -1,27 +1,27 @@
-From 70ed75a1ed237ca113b9205c6accf194028d76d3 Mon Sep 17 00:00:00 2001
+From f949239b48b6a7e5e5a53ba0a164f074d13a58b2 Mon Sep 17 00:00:00 2001
 From: Zack Buhman <zack@buhman.org>
-Date: Sun, 11 Oct 2020 03:59:57 -0700
-Subject: [PATCH] config.h: uacme
+Date: Sat, 21 Aug 2021 12:38:41 -0700
+Subject: [PATCH] ptpb.io
 
 ---
  config.h | 8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/config.h b/config.h
-index 18d3d16..083086a 100644
+index ca27927..083086a 100644
 --- a/config.h
 +++ b/config.h
 @@ -1,6 +1,6 @@
--#define NATIVE_PORT 0
--#define HTTP_PORT 0
+-#define NATIVE_PORT 4444
+-#define HTTP_PORT 4443
 +#define NATIVE_PORT 444
 +#define HTTP_PORT 443
  
  #define TLS_CA "/etc/ssl/cert.pem"
--#define TLS_CERT "cert.pem"
--#define TLS_KEY "key.pem"
+-#define TLS_CERT "localhost.crt.pem"
+-#define TLS_KEY "localhost.key.pem"
 +#define TLS_CERT "/mnt/uacme/ptpb.io/cert.pem"
 +#define TLS_KEY "/mnt/uacme/private/ptpb.io/key.pem"
 -- 
-2.28.0
+2.33.0
 
